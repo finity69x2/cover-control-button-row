@@ -193,26 +193,6 @@ class CustomCoverControlRow extends Polymer.Element {
 		if (revButtons) {
 			this.setProperties({
 				_stateObj: stateObj,
-				_leftPosition: closed == 'on',
-				_rightPosition: opened == 'on',
-				_leftColor: clsbtncolor,
-				//_midLeftColor: closedcolor,
-				_stopColor: stopbtncolor,
-				//_midRightColor: openedcolor,
-				_rightColor: opnbtncolor,
-				_leftText: closetext,
-				//_midLeftText: isclosedtext,
-				_stopText: stoptext,
-				//_midRightText: isopentext,
-				_rightText: opentext,
-				_leftName: closename,
-				_stopName: stopname,
-				_rightName: openname,
-				
-			});
-		} else {
-			this.setProperties({
-				_stateObj: stateObj,
 				_leftPosition: opened == 'on',
 				_rightPosition: closed == 'on',
 				_leftColor: opnbtncolor,
@@ -228,7 +208,25 @@ class CustomCoverControlRow extends Polymer.Element {
 				_leftName: openname,
 				_stopName: stopname,
 				_rightName: closename,
-				
+			});
+		} else {
+			this.setProperties({
+				_stateObj: stateObj,
+				_leftPosition: closed == 'on',
+				_rightPosition: opened == 'on',
+				_leftColor: clsbtncolor,
+				//_midLeftColor: closedcolor,
+				_stopColor: stopbtncolor,
+				//_midRightColor: openedcolor,
+				_rightColor: opnbtncolor,
+				_leftText: closetext,
+				//_midLeftText: isclosedtext,
+				_stopText: stoptext,
+				//_midRightText: isopentext,
+				_rightText: opentext,
+				_leftName: closename,
+				_stopName: stopname,
+				_rightName: openname,
 			});
 		}
 	}
