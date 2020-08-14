@@ -47,15 +47,6 @@ If the cover position is changed via any other means (slider, service call, etc)
 
 This plugin can also be used with a group of positionable covers by creating a "cover group". Then each cover in the group will be simultaneously controlled by the plugin.
 
-stopButtonColor: 'orange'
-            buttonInactiveColor: 'gray'
-            isOpenedColor: 'pink'
-            isClosedColor: 'magenta'
-            customOpenText: 'OPEN'
-            customStopText: 'STOP'
-            customCloseText: 'CLOSE'
-
-
 <b>Configuration Examples:</b>
     
   ```
