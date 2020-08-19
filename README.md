@@ -32,7 +32,7 @@ Then to use this in a card place the following in your entity card:
 | name | String | No | none | A custom name for the entity in the row |
 | customTheme | Boolean | No | false | Set to true to use a custom theme |
 | reverseButtons | Boolean | No | false | Set to true to reverse the button order |
-| isOpenedColor | String | No | '#f44c09' | Sets the color of the 'open' button if cover is fully open |
+| isOpenColor | String | No | '#f44c09' | Sets the color of the 'open' button if cover is fully open |
 | isClosedColor | String | No | '#43A047' | Sets the color of the 'closed' button if cover is closed |
 | stopButtonColor | String | No | '#c94444' | Sets the color of the 'open' button if cover is fully open |
 | buttonInactiveColor | String | No | '#759aaa' | Sets the color of the the buttons if that selection is not "active" |
@@ -64,7 +64,7 @@ This plugin can also be used with a group of positionable covers by creating a "
             customTheme: true
             stopButtonColor: 'orange'
             buttonInactiveColor: 'gray'
-            isOpenedColor: 'pink'
+            isOpenColor: 'pink'
             isClosedColor: 'magenta'
             ## used to select custom text for the buttons
             customOpenText: 'OPEN'
