@@ -1,6 +1,7 @@
 Button row for controlling open/close covers in Home Assistant. This plugin will also accept a "cover group" as the entity_id.
 
 This element is completely theme-able to provide a match to the other control rows to provide a consistent look for the different elements in your Lovelace frontend
+
 <b>Configuration Examples:</b>
     
   ```
