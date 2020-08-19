@@ -56,9 +56,9 @@ This plugin can also be used with a group of positionable covers by creating a "
         show_header_toggle: false
         state_color: true
         entities:
-          - type: custom:cover-position-preset-row
-            name: Blind Custom Position
-            entity: cover.blinds_test
+          - type: custom:cover-control-button-row
+            name: Garage Door
+            entity: cover.garage_door
             reverseButtons: true
             ## used to select your own customizable theme
             customTheme: true
