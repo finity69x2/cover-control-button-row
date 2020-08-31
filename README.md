@@ -38,7 +38,7 @@ Then to use this in a card place the following in your entity card:
 | buttonInactiveColor | String | No | '#759aaa' | Sets the color of the the buttons if that selection is not "active" |
 | customOpenText | String | No | 'OPN' | Sets the text of the "open" control button |
 | customStopText | String | No | 'STP' | Sets the text of the "stop" control button |
-| customClosedText | String | No | 'CLS' | Sets the text of the "close" control button |
+| customCloseText | String | No | 'CLS' | Sets the text of the "close" control button |
 
 
 The values for the colors can be any valid color string in "HEX", "RGB" or by color name.
