@@ -15,6 +15,7 @@ This element is completely theme-able to provide a match to the other control ro
             name: Garage Door
             entity: cover.garage_door
             reverseButtons: true
+            hideStopButton: true
             ## used to select your own customizable theme
             customTheme: true
             stopButtonColor: 'orange'
