@@ -35,7 +35,7 @@ class CustomCoverControlRow extends Polymer.Element {
 							disabled='[[_leftPosition]]'>[[_leftText]]</button>
 						<button
 							class='position'
-							style='[[_stopColor]]'
+							style='[[_stopColor]];[[_hideStop]]'
 							toggles name="[[_stopName]]"
 							on-click='setPosition'>[[_stopText]]</button>
 						<button
@@ -85,6 +85,7 @@ class CustomCoverControlRow extends Polymer.Element {
 				_rightName: String,
 				_leftPosition: Boolean,
 				_rightPosition: Boolean,
+				_hideStop: Boolean,
 		}
 	}
 
@@ -94,6 +95,7 @@ class CustomCoverControlRow extends Polymer.Element {
 		this._config = {
 			customTheme: false,
 			reverseButtons: false,
+			hideStopButton: false,
 			//openButtonColor: '#43A047',
 			stopButtonColor: '#c94444',
 			//closeButtonColor: '#f44c09',
@@ -116,6 +118,7 @@ class CustomCoverControlRow extends Polymer.Element {
 		const stateObj = hass.states[config.entity];
 		const custTheme = config.customTheme;
 		const revButtons = config.reverseButtons;
+		const hideStpBtn = config.hideStopButton;
 		//const opnButtonClr = config.openButtonColor;
 		const stpButtonClr = config.stopButtonColor;
 		//const clsButtonClr = config.closeButtonColor;
@@ -189,6 +192,14 @@ class CustomCoverControlRow extends Polymer.Element {
 		let stopname = 'stop';
 		let closename = 'close';
 		
+		let hidestop = 'display:block';
+	
+		if (hideStpBtn) {
+			hidestop = 'display:none';
+		} else {
+			hidestop = 'display:block';
+		}
+		
 
 		if (revButtons) {
 			this.setProperties({
@@ -208,6 +219,7 @@ class CustomCoverControlRow extends Polymer.Element {
 				_leftName: openname,
 				_stopName: stopname,
 				_rightName: closename,
+				_hideStop: hidestop,
 			});
 		} else {
 			this.setProperties({
@@ -227,6 +239,7 @@ class CustomCoverControlRow extends Polymer.Element {
 				_leftName: closename,
 				_stopName: stopname,
 				_rightName: openname,
+				_hideStop: hidestop,
 			});
 		}
 	}
