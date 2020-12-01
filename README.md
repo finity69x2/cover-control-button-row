@@ -32,6 +32,7 @@ Then to use this in a card place the following in your entity card:
 | name | String | No | none | A custom name for the entity in the row |
 | customTheme | Boolean | No | false | Set to true to use a custom theme |
 | reverseButtons | Boolean | No | false | Set to true to reverse the button order |
+| hideStopButton | Boolean | No | false | Set to true to hide the Stop button for covers thast don't support it. |
 | isOpenColor | String | No | '#f44c09' | Sets the color of the 'open' button if cover is fully open |
 | isClosedColor | String | No | '#43A047' | Sets the color of the 'closed' button if cover is closed |
 | stopButtonColor | String | No | '#c94444' | Sets the color of the 'open' button if cover is fully open |
@@ -60,6 +61,7 @@ This plugin can also be used with a group of positionable covers by creating a "
             name: Garage Door
             entity: cover.garage_door
             reverseButtons: true
+            hideStopButton: true
             ## used to select your own customizable theme
             customTheme: true
             stopButtonColor: 'orange'
