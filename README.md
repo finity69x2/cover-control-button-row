@@ -40,6 +40,7 @@ Then to use this in a card place the following in your entity card:
 | customOpenText | String | No | 'OPN' | Sets the text of the "open" control button |
 | customStopText | String | No | 'STP' | Sets the text of the "stop" control button |
 | customCloseText | String | No | 'CLS' | Sets the text of the "close" control button |
+| state_color | Boolean | No | false | Sets the icon color of the entity to reflect the current state |
 
 
 The values for the colors can be any valid color string in "HEX", "RGB" or by color name.
