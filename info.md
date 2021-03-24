@@ -26,6 +26,8 @@ This element is completely theme-able to provide a match to the other control ro
             customOpenText: 'OPEN'
             customStopText: 'STOP'
             customCloseText: 'CLOSE'
+            width: '15px'
+            height: '15px'
   ```
 
 This is with the default Lovelace frontend theme set:
