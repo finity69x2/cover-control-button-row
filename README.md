@@ -33,6 +33,8 @@ Then to use this in a card place the following in your entity card:
 | customTheme | Boolean | No | false | Set to true to use a custom theme |
 | reverseButtons | Boolean | No | false | Set to true to reverse the button order |
 | hideStopButton | Boolean | No | false | Set to true to hide the Stop button for covers thast don't support it. |
+| width | String | No | 41px | A custom width for the buttons |
+| height | String | No | 30px | A custom height for the buttons |
 | isOpenColor | String | No | '#f44c09' | Sets the color of the 'open' button if cover is fully open |
 | isClosedColor | String | No | '#43A047' | Sets the color of the 'closed' button if cover is closed |
 | stopButtonColor | String | No | '#c94444' | Sets the color of the 'open' button if cover is fully open |
@@ -73,6 +75,8 @@ This plugin can also be used with a group of positionable covers by creating a "
             customOpenText: 'OPEN'
             customStopText: 'STOP'
             customCloseText: 'CLOSE'
+            width: '15px'
+            height: '15px'
   ```
 
 This is with the default Lovelace frontend theme set:
