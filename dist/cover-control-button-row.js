@@ -8,9 +8,6 @@ class CustomCoverControlRow extends Polymer.Element {
 					line-height: inherit;
 				}
 				.position {
-					min-width: 41px;
-					max-width: 41px;
-					height: 30px;
 					margin-left: 2px;
 					margin-right: 2px;
 					background-color: #759aaa;
@@ -29,18 +26,18 @@ class CustomCoverControlRow extends Polymer.Element {
 						<div class='horizontal justified layout' on-click="stopPropagation">
 						<button
 							class='position'
-							style='[[_leftColor]]'
+							style='[[_leftColor]];min-width:[[_width]];max-width:[[_width]];height:[[_height]]'
 							toggles name="[[_leftName]]"
 							on-click='setPosition'
 							disabled='[[_leftPosition]]'>[[_leftText]]</button>
 						<button
 							class='position'
-							style='[[_stopColor]];[[_hideStop]]'
+							style='[[_stopColor]];min-width:[[_width]];max-width:[[_width]];height:[[_height]];[[_hideStop]]'
 							toggles name="[[_stopName]]"
 							on-click='setPosition'>[[_stopText]]</button>
 						<button
 							class='position'
-							style='[[_rightColor]]'
+							style='[[_rightColor]];min-width:[[_width]];max-width:[[_width]];height:[[_height]]'
 							toggles name="[[_rightName]]"
 							on-click='setPosition'
 							disabled='[[_rightPosition]]'>[[_rightText]]</button>
@@ -70,6 +67,8 @@ class CustomCoverControlRow extends Polymer.Element {
 			},
 				_config: Object,
 				_stateObj: Object,
+				_width: String,
+				_height: String,
 				_leftColor: String,
 				//_midLeftColor: String,
 				_stopColor: String,
@@ -96,6 +95,8 @@ class CustomCoverControlRow extends Polymer.Element {
 			customTheme: false,
 			reverseButtons: false,
 			hideStopButton: false,
+			width: '41px',
+			height: '30px',
 			//openButtonColor: '#43A047',
 			stopButtonColor: '#c94444',
 			//closeButtonColor: '#f44c09',
@@ -119,6 +120,8 @@ class CustomCoverControlRow extends Polymer.Element {
 		const custTheme = config.customTheme;
 		const revButtons = config.reverseButtons;
 		const hideStpBtn = config.hideStopButton;
+		const buttonWidth = config.width;
+		const buttonHeight = config.height;
 		//const opnButtonClr = config.openButtonColor;
 		const stpButtonClr = config.stopButtonColor;
 		//const clsButtonClr = config.closeButtonColor;
@@ -187,7 +190,9 @@ class CustomCoverControlRow extends Polymer.Element {
 		//let isopentext = isOpenTxt;
 		//let isclosedtext = isClosedTxt;
 		
-	
+		let buttonwidth = buttonWidth;
+		let buttonheight = buttonHeight;
+		
 		let openname = 'open';
 		let stopname = 'stop';
 		let closename = 'close';
@@ -206,6 +211,8 @@ class CustomCoverControlRow extends Polymer.Element {
 				_stateObj: stateObj,
 				_leftPosition: opened == 'on',
 				_rightPosition: closed == 'on',
+				_width: buttonwidth,
+				_height: buttonheight,
 				_leftColor: opnbtncolor,
 				//_midLeftColor: openedcolor,
 				_stopColor: stopbtncolor,
@@ -226,6 +233,8 @@ class CustomCoverControlRow extends Polymer.Element {
 				_stateObj: stateObj,
 				_leftPosition: closed == 'on',
 				_rightPosition: opened == 'on',
+				_width: buttonwidth,
+				_height: buttonheight,
 				_leftColor: clsbtncolor,
 				//_midLeftColor: closedcolor,
 				_stopColor: stopbtncolor,
