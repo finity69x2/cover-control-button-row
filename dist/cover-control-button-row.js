@@ -26,7 +26,7 @@ class CustomCoverControlRow extends Polymer.Element {
 						<div class='horizontal justified layout' on-click="stopPropagation">
 						<button
 							class='position'
-							style='[[_leftColor]];min-width:[[_width]];max-width:[[_width]];height:[[_height]]'
+							style='[[_leftColor]];min-width:[[_width]];max-width:[[_width]];height:[[_height]];[[_hideLeft]]'
 							toggles name="[[_leftName]]"
 							on-click='setPosition'
 							disabled='[[_leftPosition]]'>[[_leftText]]</button>
@@ -37,7 +37,7 @@ class CustomCoverControlRow extends Polymer.Element {
 							on-click='setPosition'>[[_stopText]]</button>
 						<button
 							class='position'
-							style='[[_rightColor]];min-width:[[_width]];max-width:[[_width]];height:[[_height]]'
+							style='[[_rightColor]];min-width:[[_width]];max-width:[[_width]];height:[[_height]];[[_hideRight]]'
 							toggles name="[[_rightName]]"
 							on-click='setPosition'
 							disabled='[[_rightPosition]]'>[[_rightText]]</button>
@@ -85,6 +85,7 @@ class CustomCoverControlRow extends Polymer.Element {
 				_leftPosition: Boolean,
 				_rightPosition: Boolean,
 				_hideStop: Boolean,
+				_hideClose: Boolean,
 		}
 	}
 
@@ -95,6 +96,7 @@ class CustomCoverControlRow extends Polymer.Element {
 			customTheme: false,
 			reverseButtons: false,
 			hideStopButton: false,
+			hideCloseButton: false,
 			width: '41px',
 			height: '30px',
 			//openButtonColor: '#43A047',
@@ -120,6 +122,7 @@ class CustomCoverControlRow extends Polymer.Element {
 		const custTheme = config.customTheme;
 		const revButtons = config.reverseButtons;
 		const hideStpBtn = config.hideStopButton;
+		const hideClsBtn = config.hideCloseButton;
 		const buttonWidth = config.width;
 		const buttonHeight = config.height;
 		//const opnButtonClr = config.openButtonColor;
@@ -198,6 +201,7 @@ class CustomCoverControlRow extends Polymer.Element {
 		let closename = 'close';
 		
 		let hidestop = 'display:block';
+		let hideclose = 'display:block';
 	
 		if (hideStpBtn) {
 			hidestop = 'display:none';
@@ -205,6 +209,11 @@ class CustomCoverControlRow extends Polymer.Element {
 			hidestop = 'display:block';
 		}
 		
+		if (hideClsBtn) {
+			hideclose = 'display:none';
+		} else {
+			hideclose = 'display:block';
+		}
 
 		if (revButtons) {
 			this.setProperties({
@@ -227,6 +236,8 @@ class CustomCoverControlRow extends Polymer.Element {
 				_stopName: stopname,
 				_rightName: closename,
 				_hideStop: hidestop,
+				_hideRight: hideclose,
+				_hideLeft: 'display:block',
 			});
 		} else {
 			this.setProperties({
@@ -249,6 +260,8 @@ class CustomCoverControlRow extends Polymer.Element {
 				_stopName: stopname,
 				_rightName: openname,
 				_hideStop: hidestop,
+				_hideLeft: hideclose,
+				_hideRight: 'display:block',
 			});
 		}
 	}
