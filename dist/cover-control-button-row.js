@@ -1,3 +1,11 @@
+window.customCards = window.customCards || [];
+window.customCards.push({
+  type: "cover-control-button-row",
+  name: "cover control button row",
+  description: "A plugin to display your cover controls in a button row.",
+  preview: false,
+});
+
 class CustomCoverControlRow extends Polymer.Element {
 
 	static get template() {
