@@ -33,6 +33,7 @@ Then to use this in a card place the following in your entity card:
 | customTheme | Boolean | No | false | Set to true to use a custom theme |
 | reverseButtons | Boolean | No | false | Set to true to reverse the button order |
 | hideStopButton | Boolean | No | false | Set to true to hide the Stop button for covers thast don't support it. |
+| allowDisablingButtons | Boolean | No | true | Set to false to prevent buttons being disabled |
 | width | String | No | 41px | A custom width for the buttons |
 | height | String | No | 30px | A custom height for the buttons |
 | isOpenColor | String | No | '#f44c09' | Sets the color of the 'open' button if cover is fully open |
