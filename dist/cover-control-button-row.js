@@ -103,6 +103,7 @@ class CustomCoverControlRow extends Polymer.Element {
 			customTheme: false,
 			reverseButtons: false,
 			hideStopButton: false,
+			allowDisablingButtons: true,
 			width: '41px',
 			height: '30px',
 			//openButtonColor: '#43A047',
@@ -128,6 +129,7 @@ class CustomCoverControlRow extends Polymer.Element {
 		const custTheme = config.customTheme;
 		const revButtons = config.reverseButtons;
 		const hideStpBtn = config.hideStopButton;
+		const allowDisable = config.allowDisablingButtons;
 		const buttonWidth = config.width;
 		const buttonHeight = config.height;
 		//const opnButtonClr = config.openButtonColor;
@@ -217,8 +219,8 @@ class CustomCoverControlRow extends Polymer.Element {
 		if (revButtons) {
 			this.setProperties({
 				_stateObj: stateObj,
-				_leftPosition: opened == 'on',
-				_rightPosition: closed == 'on',
+				_leftPosition: (opened == 'on' && allowDisable),
+				_rightPosition: (closed == 'on' && allowDisable),
 				_width: buttonwidth,
 				_height: buttonheight,
 				_leftColor: opnbtncolor,
@@ -239,8 +241,8 @@ class CustomCoverControlRow extends Polymer.Element {
 		} else {
 			this.setProperties({
 				_stateObj: stateObj,
-				_leftPosition: closed == 'on',
-				_rightPosition: opened == 'on',
+				_leftPosition: (closed == 'on' && allowDisable),
+				_rightPosition: (opened == 'on'  && allowDisable),
 				_width: buttonwidth,
 				_height: buttonheight,
 				_leftColor: clsbtncolor,
