@@ -6,99 +6,15 @@ window.customCards.push({
   preview: false,
 });
 
-class CustomCoverControlRow extends Polymer.Element {
+const LitElement = customElements.get("ha-panel-lovelace") ? Object.getPrototypeOf(customElements.get("ha-panel-lovelace")) : Object.getPrototypeOf(customElements.get("hc-lovelace"));
+const html = LitElement.prototype.html;
+const css = LitElement.prototype.css;
 
-	static get template() {
-		return Polymer.html`
-			<style is="custom-style" include="iron-flex iron-flex-alignment"></style>
-			<style>
-				:host {
-					line-height: inherit;
-				}
-				.position {
-					margin-left: 2px;
-					margin-right: 2px;
-					background-color: #759aaa;
-					border: 1px solid lightgrey; 
-					border-radius: 4px;
-					font-size: 10px !important;
-					color: inherit;
-					text-align: center;
-					float: right !important;
-					padding: 1px;
-					cursor: pointer;
-				}
-				
-				</style>
-					<hui-generic-entity-row hass="[[hass]]" config="[[_config]]">
-						<div class='horizontal justified layout' on-click="stopPropagation">
-						<button
-							class='position'
-							style='[[_leftColor]];min-width:[[_width]];max-width:[[_width]];height:[[_height]]'
-							toggles name="[[_leftName]]"
-							on-click='setPosition'
-							disabled='[[_leftPosition]]'>[[_leftText]]</button>
-						<button
-							class='position'
-							style='[[_stopColor]];min-width:[[_width]];max-width:[[_width]];height:[[_height]];[[_hideStop]]'
-							toggles name="[[_stopName]]"
-							on-click='setPosition'>[[_stopText]]</button>
-						<button
-							class='position'
-							style='[[_rightColor]];min-width:[[_width]];max-width:[[_width]];height:[[_height]]'
-							toggles name="[[_rightName]]"
-							on-click='setPosition'
-							disabled='[[_rightPosition]]'>[[_rightText]]</button>
-						</div>
-					</hui-generic-entity-row>
-		`;
-    }
-/*
-						<button
-							class='position'
-							style='[[_midLeftColor]]'
-							on-click='setPosition'
-							disabled=true>[[_midLeftText]]</button>
+class CustomCoverControlRow extends LitElement {
 
-						<button
-							class='position'
-							style='[[_midRightColor]]'
-							on-click='setPosition'
-							disabled=true>[[_midRightText]]</button>
-*/
 
-    static get properties() {
-		return {
-			hass: {
-				type: Object,
-				observer: 'hassChanged'
-			},
-				_config: Object,
-				_stateObj: Object,
-				_width: String,
-				_height: String,
-				_leftColor: String,
-				//_midLeftColor: String,
-				_stopColor: String,
-				//_midRightColor: String,
-				_rightColor: String,
-				_leftText: String,
-				//_midLeftText: String,
-				_stopText: String,
-				//_midRightText: String,
-				_rightText: String,
-				_leftName: String,
-				_stopName: String,
-				_rightName: String,
-				_leftPosition: Boolean,
-				_rightPosition: Boolean,
-				_hideStop: Boolean,
-		}
-	}
-
-	setConfig(config) {
-		this._config = config;
-		
+	constructor() {
+		super();
 		this._config = {
 			customTheme: false,
 			reverseButtons: false,
@@ -106,43 +22,116 @@ class CustomCoverControlRow extends Polymer.Element {
 			allowDisablingButtons: true,
 			width: '41px',
 			height: '30px',
-			//openButtonColor: '#43A047',
 			stopButtonColor: '#c94444',
-			//closeButtonColor: '#f44c09',
 			buttonInactiveColor: '#759aaa',
 			isOpenColor: '#f44c09',
 			isClosedColor: '#43A047',
-			//notInPositionColor: 'gray',
 			customOpenText: 'OPN',
-			//customOpenedText: 'UP',
 			customStopText: 'STP',
-			//customClosedText: 'DWN',
 			customCloseText: 'CLS',
-			...config
 		};
 	}
 
+	static get properties() {
+		return {
+			hass: Object,
+			_config: Object,
+				_stateObj: Object,
+				_width: String,
+				_height: String,
+				_leftColor: String,
+				_stopColor: String,
+				_rightColor: String,
+				_leftText: String,
+				_stopText: String,
+				_rightText: String,
+				_leftName: String,
+				_stopName: String,
+				_rightName: String,
+				_leftPosition: Boolean,
+				_rightPosition: Boolean,
+				_hideStop: Boolean,
+		};
+	}
+
+	static get styles() {
+		return css`
+			:host {
+				line-height: inherit;
+			}
+			.position {
+				margin-left: 2px;
+				margin-right: 2px;
+				background-color: #759aaa;
+				border: 1px solid lightgrey; 
+				border-radius: 4px;
+				font-size: 10px !important;
+				color: inherit;
+				text-align: center;
+				float: left !important;
+				padding: 1px;
+				cursor: pointer;
+			}
+		`;
+	}
+	
+	render() {
+		return html`
+			<hui-generic-entity-row .hass="${this.hass}" .config="${this._config}">
+				<div id='button-container' class='horizontal justified layout'>
+					<button
+						class='position'
+						style='${this._leftColor};min-width:${this._width};max-width:${this._width};height:${this._height}'
+						toggles name="${this._leftName}"
+						@click=${this.setPosition}
+						.disabled=${this._leftPosition}>${this._leftText}</button>
+					<button
+						class='position'
+						style='${this._stopColor};min-width:${this._width};max-width:${this._width};height:${this._height};${this._hideStop}'
+						toggles name="${this._stopName}"
+						@click=${this.setPosition}>${this._stopText}</button>
+					<button
+						class='position'
+						style='${this._rightColor};min-width:${this._width};max-width:${this._width};height:${this._height}'
+						toggles name="${this._rightName}"
+						@click=${this.setPosition}
+						.disabled=${this._rightPosition}>${this._rightText}</button>
+				</div>
+			</hui-generic-entity-row>
+		`;
+	}
+	
+	firstUpdated() {
+		super.firstUpdated();
+		this.shadowRoot.getElementById('button-container').addEventListener('click', (ev) => ev.stopPropagation());
+	}
+
+	setConfig(config) {
+		this._config = { ...this._config, ...config };
+	}
+
+	updated(changedProperties) {
+		if (changedProperties.has("hass")) {
+			this.hassChanged();
+		}
+	}
+	
 	hassChanged(hass) {
 
 		const config = this._config;
-		const stateObj = hass.states[config.entity];
+		const stateObj = this.hass.states[config.entity];
 		const custTheme = config.customTheme;
 		const revButtons = config.reverseButtons;
 		const hideStpBtn = config.hideStopButton;
 		const allowDisable = config.allowDisablingButtons;
 		const buttonWidth = config.width;
 		const buttonHeight = config.height;
-		//const opnButtonClr = config.openButtonColor;
 		const stpButtonClr = config.stopButtonColor;
-		//const clsButtonClr = config.closeButtonColor;
 		const disabledButtonClr = config.buttonInactiveColor;
 		const isOpenedClr = config.isOpenColor;
 		const isClosedClr = config.isClosedColor;
-		//const notInPositionClr = config.notInPositionColor;
 		const opnTxt = config.customOpenText;
-		//const isOpenTxt = config.customOpenedText;
 		const stpTxt = config.customStopText;
-		//const isClosedTxt = config.customClosedText;
 		const clsTxt = config.customCloseText;
 						
 				
@@ -160,33 +149,23 @@ class CustomCoverControlRow extends Polymer.Element {
 		let opnbtncolor;
 		let clsbtncolor;
 		let stopbtncolor;
-		//let openedcolor;
-		//let closedcolor;
 				
 		if (custTheme) {
 			if (opened == 'on') {
-				//openedcolor = 'background-color:' + isOpenedClr;
-				//closedcolor = 'background-color:' + notInPositionClr;
 				stopbtncolor = 'background-color:' + stpButtonClr;
 				opnbtncolor = 'background-color:' + isOpenedClr; //clsButtonClr;
 				clsbtncolor = 'background-color:' + disabledButtonClr;
 			} else {
-				//openedcolor = 'background-color:' + notInPositionClr;
-				//closedcolor = 'background-color:' + isClosedClr;
 				stopbtncolor = 'background-color:' + stpButtonClr;
 				opnbtncolor = 'background-color:' + disabledButtonClr;
 				clsbtncolor = 'background-color:' + isClosedClr; //opnButtonClr;
 			}
 		} else {
 			if (opened == 'on') {
-				//openedcolor = 'background-color: red';
-				//closedcolor = 'background-color: var(--switch-unchecked-color)';
 				stopbtncolor = 'background-color: red';
 				opnbtncolor = 'background-color: var(--primary-color)';
 				clsbtncolor = 'background-color: var(--disabled-text-color)';
 			} else if (closed == 'on') {
-				//openedcolor = 'background-color: var(--switch-unchecked-color)';
-				//closedcolor = 'background-color: #17e837';
 				stopbtncolor = 'background-color: red';
 				opnbtncolor = 'background-color: var(--disabled-text-color)';
 				clsbtncolor = 'background-color: var(--primary-color)';
@@ -197,8 +176,6 @@ class CustomCoverControlRow extends Polymer.Element {
 		let opentext = opnTxt;
 		let stoptext = stpTxt;
 		let closetext = clsTxt;
-		//let isopentext = isOpenTxt;
-		//let isclosedtext = isClosedTxt;
 		
 		let buttonwidth = buttonWidth;
 		let buttonheight = buttonHeight;
@@ -217,57 +194,40 @@ class CustomCoverControlRow extends Polymer.Element {
 		
 
 		if (revButtons) {
-			this.setProperties({
-				_stateObj: stateObj,
-				_leftPosition: (opened == 'on' && allowDisable),
-				_rightPosition: (closed == 'on' && allowDisable),
-				_width: buttonwidth,
-				_height: buttonheight,
-				_leftColor: opnbtncolor,
-				//_midLeftColor: openedcolor,
-				_stopColor: stopbtncolor,
-				//_midRightColor: closedcolor,
-				_rightColor: clsbtncolor,
-				_leftText: opentext,
-				//_midLeftText: isopentext,
-				_stopText: stoptext,
-				//_midRightText: isclosedtext,
-				_rightText: closetext,
-				_leftName: openname,
-				_stopName: stopname,
-				_rightName: closename,
-				_hideStop: hidestop,
-			});
+			this._stateObj = stateObj;
+			this._leftPosition = (opened == 'on' && allowDisable);
+			this._rightPosition = (closed == 'on' && allowDisable);
+			this._width = buttonwidth;
+			this._height = buttonheight;
+			this._leftColor = opnbtncolor;
+			this._stopColor = stopbtncolor;
+			this._rightColor = clsbtncolor;
+			this._leftText = opentext;
+			this._stopText = stoptext;
+			this._rightText = closetext;
+			this._leftName = openname;
+			this._stopName = stopname;
+			this._rightName = closename;
+			this._hideStop = hidestop;
 		} else {
-			this.setProperties({
-				_stateObj: stateObj,
-				_leftPosition: (closed == 'on' && allowDisable),
-				_rightPosition: (opened == 'on'  && allowDisable),
-				_width: buttonwidth,
-				_height: buttonheight,
-				_leftColor: clsbtncolor,
-				//_midLeftColor: closedcolor,
-				_stopColor: stopbtncolor,
-				//_midRightColor: openedcolor,
-				_rightColor: opnbtncolor,
-				_leftText: closetext,
-				//_midLeftText: isclosedtext,
-				_stopText: stoptext,
-				//_midRightText: isopentext,
-				_rightText: opentext,
-				_leftName: closename,
-				_stopName: stopname,
-				_rightName: openname,
-				_hideStop: hidestop,
-			});
+			this._stateObj = stateObj;
+			this._leftPosition = (closed == 'on' && allowDisable);
+			this._rightPosition = (opened == 'on'  && allowDisable);
+			this._width = buttonwidth;
+			this._height = buttonheight;
+			this._leftColor = clsbtncolor;
+			this._stopColor = stopbtncolor;
+			this._rightColor = opnbtncolor;
+			this._leftText = closetext;
+			this._stopText = stoptext;
+			this._rightText = opentext;
+			this._leftName = closename;
+			this._stopName = stopname;
+			this._rightName = openname;
+			this._hideStop = hidestop;
 		}
 	}
 
-	
-	stopPropagation(e) {
-		e.stopPropagation();
-	}
-	
 	setPosition(e) {
 		const position = e.currentTarget.getAttribute('name');
 		if( position == 'open' ){
