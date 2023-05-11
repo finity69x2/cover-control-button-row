@@ -59,6 +59,10 @@ class CustomCoverControlRow extends LitElement {
 			:host {
 				line-height: inherit;
 			}
+			.box {
+				display: flex;
+				flex-direction: row;
+			}
 			.position {
 				margin-left: 2px;
 				margin-right: 2px;
@@ -78,7 +82,7 @@ class CustomCoverControlRow extends LitElement {
 	render() {
 		return html`
 			<hui-generic-entity-row .hass="${this.hass}" .config="${this._config}">
-				<div id='button-container' class='horizontal justified layout'>
+				<div id='button-container' class='box'>
 					<button
 						class='position'
 						style='${this._leftColor};min-width:${this._width};max-width:${this._width};height:${this._height}'
