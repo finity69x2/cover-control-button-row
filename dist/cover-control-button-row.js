@@ -165,14 +165,16 @@ class CustomCoverControlRow extends LitElement {
 				clsbtncolor = 'background-color:' + isClosedClr; //opnButtonClr;
 			}
 		} else {
+			const styleOn = 'background-color: var(--ha-switch-checked-background-color, var(--ha-color-fill-primary-normal-resting)); border-color: var(--ha-switch-checked-border-color, var(--ha-color-border-primary-loud))';
+			const styleOff = 'background-color: var(--ha-switch-background-color, var(--ha-color-fill-disabled-quiet-resting)); border-color: var(--ha-switch-border-color, var(--ha-color-border-neutral-normal))';
 			if (opened == 'on') {
 				stopbtncolor = 'background-color: red';
-				opnbtncolor = 'background-color: var(--primary-color)';
-				clsbtncolor = 'background-color: var(--disabled-text-color)';
+				opnbtncolor = styleOn;
+				clsbtncolor = styleOff;
 			} else if (closed == 'on') {
 				stopbtncolor = 'background-color: red';
-				opnbtncolor = 'background-color: var(--disabled-text-color)';
-				clsbtncolor = 'background-color: var(--primary-color)';
+				opnbtncolor = styleOn;
+				clsbtncolor = styleOff;
 			}
 		}
 
